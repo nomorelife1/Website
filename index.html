@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NoMoreLife</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #121212, #1e1e1e);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            perspective: 1500px;
+        }
+
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0.5;
+            filter: brightness(0.5) contrast(1.2);
+        }
+
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.6));
+            z-index: -1;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 50px;
+            text-align: center;
+            max-width: 900px;
+            width: 90%;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5), 
+                        0 0 50px rgba(0,73,229,0.3);
+            transform: translateZ(100px) rotateX(5deg);
+            border: 2px solid rgba(255,255,255,0.1);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateZ(100px) rotateX(5deg) translateY(0); }
+            50% { transform: translateZ(100px) rotateX(5deg) translateY(-15px); }
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            color: #ffffff;
+            font-size: 2.5rem;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .social-link img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .social-link:hover {
+            transform: scale(1.15) rotate(360deg);
+            color: #0049E5;
+            box-shadow: 0 0 20px rgba(0,73,229,0.5);
+        }
+
+        .clock {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 30px;
+            text-shadow: 0 0 15px rgba(0,73,229,0.7), 
+                         0 0 25px rgba(0,73,229,0.5);
+            letter-spacing: 3px;
+            background: linear-gradient(to right, #0049E5, #00e5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .music-toggle {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: #ffffff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .music-toggle:hover {
+            color: #0049E5;
+            transform: scale(1.1) rotate(180deg);
+            box-shadow: 0 0 20px rgba(0,73,229,0.5);
+        }
+
+        .feedback-btn {
+            background-color: #0049E5;
+            color: #ffffff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,73,229,0.4);
+        }
+
+        .feedback-btn:hover {
+            background-color: #00e5ff;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,73,229,0.6);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+                width: 95%;
+            }
+
+            .social-links {
+                gap: 20px;
+            }
+
+            .clock {
+                font-size: 2.5rem;
+            }
+        }
+
+        .kissMyAss {
+            background: linear-gradient(135deg, #121212, #1e1e1e);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10550;
+            transition: 0.5s;
+        }
+
+        .kissMyAss button {
+            border: 2px solid #0049E5;
+            color: #ffffff;
+            background: transparent;
+            font-size: 40px;
+            cursor: pointer;
+            padding: 15px 30px;
+            border-radius: 50px;
+            transition: all 0.5s ease;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .kissMyAss button:hover {
+            background-color: #0049E5;
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(0,73,229,0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="kissMyAss">
+        <button class="button-start">ENTER</button>
+    </div>
+    <video class="background-video" id="background-video" loop>
+        <source src="1.mp4" type="video/mp4">
+    </video>
+    
+    <div class="background-overlay"></div>
+
+    <div class="container">
+        <div id="clock" class="clock">00:00:00</div>
+
+        <div class="social-links">
+            <a href="https://open.spotify.com/user/31dliwtzb3wu5oitxbrvkzoutkea" class="social-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-spotify"></i>
+            </a>
+            <a href="https://github.com/yousif111" class="social-link" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://www.youtube.com/@nomorelife6932/videos" class="social-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://discord.com/users/460581089170292766" class="social-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-discord"></i>
+            </a>
+        </div>
+        
+        <div class="controls">
+            <button id="musicToggle" class="music-toggle">
+                <i id="musicIcon" class="fas fa-volume-up"></i>
+            </button>
+            <a href="https://yousif111.github.io/FeedBack/" class="feedback-btn">
+                Feedback <i class="fas fa-comment"></i>
+            </a>
+        </div>
+    </div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="https://cdn.discordapp.com/attachments/1133001504614252664/1162213280937418844/x2mate.com_-_-_Mostafa_Elnesr_-_ANA_Z3LTK_Official_Audio_128_kbps.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const clock = document.getElementById('clock');
+            clock.textContent = now.toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        const musicToggle = document.getElementById('musicToggle');
+        const musicIcon = document.getElementById('musicIcon');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        
+        musicToggle.addEventListener('click', () => {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+                musicIcon.classList.remove('fa-volume-up');
+                musicIcon.classList.add('fa-volume-down');
+            } else {
+                backgroundMusic.pause();
+                musicIcon.classList.remove('fa-volume-down');
+                musicIcon.classList.add('fa-volume-up');
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const buttonStart = document.querySelector('.button-start');
+            const kissMyAss = document.querySelector('.kissMyAss');
+            const backgroundVideo = document.getElementById('background-video');
+
+            buttonStart.addEventListener("click", function () {
+                kissMyAss.style.opacity = '0';
+                setTimeout(() => {
+                    kissMyAss.style.display = 'none'; 
+                }, 1000);
+
+                backgroundVideo.style.display = 'block';
+                backgroundVideo.play();
+            });
+        });
+    </script>
+</body>
+</html>
